@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador do Relacionamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+        .photo {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .counter {
+            font-size: 2rem;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        .phrase {
+            margin-top: 20px;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="photo" src="sua-foto.jpg" alt="Foto do Casal">
+        <div class="counter" id="contador">
+            <p>Calculando... aguarde</p>
+        </div>
+        <div class="phrase" id="frase">
+            <p>“Juntos é o nosso lugar.”</p>
+        </div>
+    </div>
+
+    <script>
+        // Defina a data do início do relacionamento (coloque sua data aqui)
+        const dataInicio = new Date("2022-01-01T00:00:00"); // Ajuste a data para o seu caso
+        
+        // Função para calcular o tempo passado desde a data do namoro
+        function atualizarContador() {
+            const agora = new Date();
+            const tempoPassado = agora - dataInicio;
+
+            const anos = Math.floor(tempoPassado / (1000 * 60 * 60 * 24 * 365));
+            const dias = Math.floor((tempoPassado % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((tempoPassado % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((tempoPassado % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("contador").innerHTML = `
+                <p>${anos} anos, ${dias} dias, ${horas} horas, e ${minutos} minutos.</p>
+            `;
+        }
+
+        // Atualiza o contador a cada minuto
+        setInterval(atualizarContador, 60000); // Atualiza a cada 60 segundos
+        atualizarContador(); // Executa imediatamente ao carregar a página
+    </script>
+</body>
+</html>
